@@ -1,10 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useRouter } from "next/router";
 import Hidden from "@material-ui/core/Hidden";
@@ -18,8 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   nav: {
     backgroundColor: "#EAFCDE",
-    paddingLeft: 40,
-    paddingRight: 40
+    paddingLeft: 15,
+    paddingRight: 15
   },
   navDiv: {
     justifyContent: "space-between"
@@ -39,12 +43,23 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     color: "#008037"
+  },
+  menuApp: {
+    color: "#008037"
   }
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
   const router = useRouter();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
+  function handleClose() {
+    setAnchorEl(null);
+  }
   return (
     <div className={classes.root}>
       <AppBar className={classes.nav} position="static">
@@ -60,9 +75,26 @@ export default function ButtonAppBar() {
             }}
           >
             <Hidden mdUp>
-              <IconButton edge="start" color="inherit" aria-label="menu">
+              <IconButton
+                edge="start"
+                className={classes.menuApp}
+                aria-label="menu"
+                onClick={handleClick}
+              >
                 <MenuIcon />
               </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem>Acessar</MenuItem>
+                <MenuItem onClick={() => router.push("/register")}>
+                  Cadastrar
+                </MenuItem>
+              </Menu>
             </Hidden>
             <Hidden smDown>
               <Button className={classes.btnAcess}>Acessar</Button>

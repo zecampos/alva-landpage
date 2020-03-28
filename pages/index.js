@@ -14,10 +14,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     color: theme.palette.text.secondary
   },
-  subtitle: {
-    color: "#008037",
-    fontWeight: 400
-  }
+  subtitle: {}
 }));
 
 export default function Index() {
@@ -33,16 +30,23 @@ export default function Index() {
         <Grid item xs={12}>
           <TheNavLanding />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={12} lg={12} md={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h4">
+            <Typography component="h4" variant="h4">
               Estamos ajudando a mapear o grupo de Risco do corona vírus
               COVID-19
             </Typography>
-            <Typography className={classes.subtitle} variant="h6">
+            <Typography
+              color="primary"
+              className={classes.subtitle}
+              variant="h6"
+            >
               Tornemos visível quem mais precisa de atenção e cuidados neste
               momento. Cadastre-se
             </Typography>
+            <div>
+              <img style={{ maxWidth: "100%" }} src="/map.jpg" />
+            </div>
           </Paper>
         </Grid>
       </Grid>

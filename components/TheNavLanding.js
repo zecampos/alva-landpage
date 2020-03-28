@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useRouter } from "next/router";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   nav: {
-    backgroundColor: "#EAFCDE",
+    backgroundColor: "#FFF",
     paddingLeft: 15,
     paddingRight: 15
   },
@@ -29,13 +31,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between"
   },
   btnAcess: {
-    backgroundColor: "#008037",
-    color: "#FFF",
     marginLeft: 15,
     marginRight: 15
   },
   btnRegister: {
-    backgroundColor: "#EDB44D",
+    backgroundColor: "#3B5A9A",
     color: "#FFF",
     marginLeft: 15,
     marginRight: 15
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     color: "#008037"
   },
   menuApp: {
-    color: "#008037"
+    color: "#3B5A9A"
   }
 }));
 
@@ -65,9 +65,7 @@ export default function ButtonAppBar() {
       <AppBar className={classes.nav} position="static">
         <Toolbar className={classes.navDiv}>
           <div>
-            <Typography variant="h5" className={classes.title}>
-              Alva
-            </Typography>
+            <img style={{ height: 60 }} src="/logo.png" />
           </div>
           <div
             style={{
@@ -97,10 +95,18 @@ export default function ButtonAppBar() {
               </Menu>
             </Hidden>
             <Hidden smDown>
-              <Button className={classes.btnAcess}>Acessar</Button>
               <Button
+                variant="outlined"
+                className={classes.btnAcess}
+                color="primary"
+              >
+                Acessar
+              </Button>
+              <Button
+                variant="contained"
                 onClick={() => router.push("/register")}
-                className={classes.btnRegister}
+                className={classes.btnAcess}
+                color="primary"
               >
                 Quero me cadastrar agora!
               </Button>
